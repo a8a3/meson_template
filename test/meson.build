@@ -1,12 +1,11 @@
 sources = [
-    'src/gtest_main.cpp',
     'src/test.cpp'
 ]
 
 # dependencies
 gtest = subproject('gtest')
 gtest_dep = gtest.get_variable('gtest_dep')
-#gtest_main_dep = dependency('gtest', main : true, required : true)
+gtest_main_dep = gtest.get_variable('gtest_main_dep')
 gmock_dep = dependency('gmock', main : true, required : true)
 thread_dep = dependency('threads')
 
@@ -15,7 +14,7 @@ executable(
     sources,
     dependencies : [
         gtest_dep, 
-#       gtest_main_dep, 
+        gtest_main_dep, 
         gmock_dep, 
         thread_dep]
 )
